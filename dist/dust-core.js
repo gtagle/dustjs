@@ -1,8 +1,10 @@
 /*! Dust - Asynchronous Templating - v2.5.1
 * http://linkedin.github.io/dustjs/
-* Copyright (c) 2014 Aleksander Williams; Released under the MIT License */
+* Copyright (c) 2015 Aleksander Williams; Released under the MIT License */
 (function(root) {
-  var dust = {},
+  var dust = {
+        "version": "2.5.1"
+      },
       NONE = 'NONE',
       ERROR = 'ERROR',
       WARN = 'WARN',
@@ -17,7 +19,7 @@
   dust.debugLevel = NONE;
 
   dust.config = {
-    whitespace: false,
+    whitespace: false
   };
 
   // Directive aliases to minify code
@@ -73,7 +75,7 @@
         dust.logQueue = [];
       }
       dust.logQueue.push({message: message, type: type});
-      logger.log('[DUST ' + type + ']: ' + message);
+      logger.log('[DUST:' + type + ']', message);
     }
   };
 

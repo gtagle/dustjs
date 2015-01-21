@@ -1,8 +1,10 @@
 /*! Dust - Asynchronous Templating - v2.5.1
 * http://linkedin.github.io/dustjs/
-* Copyright (c) 2014 Aleksander Williams; Released under the MIT License */
+* Copyright (c) 2015 Aleksander Williams; Released under the MIT License */
 (function(root) {
-  var dust = {},
+  var dust = {
+        "version": "2.5.1"
+      },
       NONE = 'NONE',
       ERROR = 'ERROR',
       WARN = 'WARN',
@@ -17,7 +19,7 @@
   dust.debugLevel = NONE;
 
   dust.config = {
-    whitespace: false,
+    whitespace: false
   };
 
   // Directive aliases to minify code
@@ -73,7 +75,7 @@
         dust.logQueue = [];
       }
       dust.logQueue.push({message: message, type: type});
-      logger.log('[DUST ' + type + ']: ' + message);
+      logger.log('[DUST:' + type + ']', message);
     }
   };
 
@@ -1079,10 +1081,10 @@
         peg$c104 = function(c) { return ["comment", c.join('')].concat([['line', line()], ['col', column()]]) },
         peg$c105 = /^[#?\^><+%:@\/~%]/,
         peg$c106 = { type: "class", value: "[#?\\^><+%:@\\/~%]", description: "[#?\\^><+%:@\\/~%]" },
-        peg$c107 = "{",
-        peg$c108 = { type: "literal", value: "{", description: "\"{\"" },
-        peg$c109 = "}",
-        peg$c110 = { type: "literal", value: "}", description: "\"}\"" },
+        peg$c107 = "<%",
+        peg$c108 = { type: "literal", value: "<%", description: "\"<%\"" },
+        peg$c109 = "%>",
+        peg$c110 = { type: "literal", value: "%>", description: "\"%>\"" },
         peg$c111 = "[",
         peg$c112 = { type: "literal", value: "[", description: "\"[\"" },
         peg$c113 = "]",
@@ -3414,9 +3416,9 @@
     function peg$parseld() {
       var s0;
 
-      if (input.charCodeAt(peg$currPos) === 123) {
+      if (input.substr(peg$currPos, 2) === peg$c107) {
         s0 = peg$c107;
-        peg$currPos++;
+        peg$currPos += 2;
       } else {
         s0 = peg$FAILED;
         if (peg$silentFails === 0) { peg$fail(peg$c108); }
@@ -3428,9 +3430,9 @@
     function peg$parserd() {
       var s0;
 
-      if (input.charCodeAt(peg$currPos) === 125) {
+      if (input.substr(peg$currPos, 2) === peg$c109) {
         s0 = peg$c109;
-        peg$currPos++;
+        peg$currPos += 2;
       } else {
         s0 = peg$FAILED;
         if (peg$silentFails === 0) { peg$fail(peg$c110); }
